@@ -1,1 +1,43 @@
+# Node.js dependencies
 node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.* 
+
+# Dependency directories
+jspm_packages/
+
+# Build output
+dist/
+build/
+
+# OS files (macOS, Windows)
+.DS_Store         # macOS
+Thumbs.db         # Windows
+
+# IDE files
+.vscode/          # Visual Studio Code
+.idea/            # JetBrains IDEs (IntelliJ, WebStorm, etc.)
+*.sublime-workspace # Sublime Text workspace files
+*.sublime-project  # Sublime Text project files
+
+# Coverage reports
+coverage/
+
+# Optional npm cache directory
+.npm/
+
+# TypeScript (si usas TypeScript)
+*.tsbuildinfo
+
+# Other configuration files that shouldn't be tracked
+*.swp               # Vim swap files
+*.swo               # Vim swap files
