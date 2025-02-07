@@ -1,6 +1,6 @@
 /**
  * This file contains the routes for the cart API.
- * It defines the routes for creating, retrieving, updating, and deleting carts.
+ * It defines the routes for creating, retrieving, and updating carts.
  * The routes are defined using the Express.js router.
  * The router is imported from the Express.js module.
  * The file reads the products data from a JSON file.
