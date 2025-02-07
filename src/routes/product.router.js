@@ -41,7 +41,7 @@ const categoryList = [
 	'womens-watches',
 ];
 
-//****************************************************************/
+//* GET ALL PRODUCTS **********************************************/
 router.get('/', (req, res) => {
 	const limit = parseInt(req.query.limit) || products.length; // If the limit is not passed, everything is returned.
 
@@ -55,7 +55,7 @@ router.get('/', (req, res) => {
 	});
 });
 
-//****************************************************************/
+//* GET A PRODUCT BY ID *******************************************/
 router.get('/:pid', (req, res) => {
 	const productId = parseInt(req.params.pid); // Convert number
 	const product = products.find((prod) => prod.id === productId); // Find the product
@@ -75,7 +75,7 @@ router.get('/:pid', (req, res) => {
 	});
 });
 
-//****************************************************************/
+//* POST A NEW PRODUCT*********************************************/
 router.post('/', (req, res) => {
 	const { title, description, code, price, status, stock, category, thumbnail } =
 		req.body;
@@ -179,7 +179,7 @@ router.post('/', (req, res) => {
 	});
 });
 
-//****************************************************************/
+//* PUT A PRODUCT *************************************************/
 router.put('/:id', (req, res) => {
 	const { id } = req.params;
 	const { title, description, code, price, status, stock, category, thumbnail } =
@@ -288,7 +288,7 @@ router.put('/:id', (req, res) => {
 	});
 });
 
-//****************************************************************/
+//* DELETE A PRODUCT *********************************************/
 router.delete('/:id', (req, res) => {
 	const { id } = req.params;
 

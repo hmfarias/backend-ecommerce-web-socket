@@ -19,7 +19,7 @@ const products = await readData(fileProducts);
 const fileCarts = './data/cartsData.json';
 const carts = await readData(fileCarts);
 
-//****************************************************************/
+//* GET ALL CARTS *************************************************/
 router.get('/', (req, res) => {
 	const completeCarts = carts.map((cart) => ({
 		...cart,
@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 
 export default router;
 
-//****************************************************************/
+//* GET A CART BY ID **********************************************/
 router.get('/:cid', (req, res) => {
 	const cartId = parseInt(req.params.cid); // Convert number
 	const cart = carts.find((cart) => cart.id === cartId); // Find the product
@@ -63,7 +63,7 @@ router.get('/:cid', (req, res) => {
 	});
 });
 
-//****************************************************************/
+//* POST A CART WITH ONE OR SEVERAL PRODUCTS **********************/
 router.post('/', (req, res) => {
 	const { products } = req.body;
 
@@ -109,7 +109,7 @@ router.post('/', (req, res) => {
 	});
 });
 
-//****************************************************************/
+//* POST A NEW CART WITH JUST ONE PRODUCT *************************/
 router.post('/product/:pid', (req, res) => {
 	const productId = parseInt(req.params.pid);
 
@@ -142,7 +142,7 @@ router.post('/product/:pid', (req, res) => {
 	});
 });
 
-//****************************************************************/
+//* POST A NEW PRODUCT IN AN EXISTING CART ************************/
 router.post('/:cid/product/:pid', (req, res) => {
 	const cartId = parseInt(req.params.cid);
 	const productId = parseInt(req.params.pid);
