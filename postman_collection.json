@@ -30,7 +30,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/products?limit=5",
+							"raw": "{{base_url}}/products?limit=1",
 							"host": [
 								"{{base_url}}"
 							],
@@ -40,7 +40,7 @@
 							"query": [
 								{
 									"key": "limit",
-									"value": "5"
+									"value": "1"
 								}
 							]
 						},
@@ -101,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\t\"title\": \"New Test Product\",\n\t\t\"description\": \"This is a test for a new product.\",\n        \"code\": \"36T6X4M3\",\n        \"price\": 129.99,\n        \"status\": true,\n        \"stock\": 55,\n\t\t\"category\": \"beauty\",\n\t\t\"thumbnail\": \"https://cdn.dummyjson.com/products/images/womens-watches/Women's%20Wrist%20Watch/thumbnail.png\"\n\t}",
+							"raw": "{\n\t\"title\": \"New Test Product\",\n\t\"description\": \"This is a test for a new product.\",\n    \"code\": \"36T6X4M3\",\n    \"price\": 129.99,\n    \"status\": true,\n     \"stock\": 55,\n\t\"category\": \"beauty\",\n\t\"thumbnail\": \"https://cdn.dummyjson.com/products/images/womens-watches/Women's%20Wrist%20Watch/thumbnail.png\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -192,13 +192,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/products/195",
+							"raw": "{{base_url}}/products/196",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"products",
-								"195"
+								"196"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -225,13 +225,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/products/7",
+							"raw": "{{base_url}}/products/195",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"products",
-								"7"
+								"195"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -263,12 +263,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/products/7",
+							"raw": "{{base_url}}/carts/7",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"products",
+								"carts",
 								"7"
 							]
 						},
@@ -296,12 +296,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/products",
+							"raw": "{{base_url}}/carts",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"products"
+								"carts"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -337,7 +337,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/carts/3/product/7",
+							"raw": "{{base_url}}/carts/3/product/40",
 							"host": [
 								"{{base_url}}"
 							],
@@ -345,7 +345,7 @@
 								"carts",
 								"3",
 								"product",
-								"7"
+								"40"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -373,7 +373,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"products\": [\n        {\n            \"idProduct\": 1,\n            \"quantity\": 7\n        }\n    ]      \n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -389,6 +389,47 @@
 								"carts",
 								"product",
 								"7"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post a new cart with several products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"products\": [\n        {\n            \"idProduct\": 1,\n            \"quantity\": 7\n        },\n                {\n            \"idProduct\": 13,\n            \"quantity\": 1\n        },\n                {\n            \"idProduct\": 100,\n            \"quantity\": 2\n        }\n    ]      \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/carts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"carts"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."

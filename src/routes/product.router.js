@@ -89,7 +89,7 @@ router.post('/', (req, res) => {
 		});
 	}
 
-	// Validar que la descripción no esté vacía
+	// Validate that the description is not empty
 	if (!description) {
 		return res.status(400).json({
 			message: 'description cannot be empty',
@@ -98,7 +98,7 @@ router.post('/', (req, res) => {
 		});
 	}
 
-	// Validar que el código de barras no esté vacío
+	// Validate that the barcode is not empty
 	if (!code) {
 		return res.status(400).json({
 			message: 'code cannot be empty',

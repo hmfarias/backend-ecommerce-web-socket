@@ -64,6 +64,52 @@ router.get('/:cid', (req, res) => {
 });
 
 //****************************************************************/
+router.post('/', (req, res) => {
+	const { products } = req.body;
+
+	// Validate that product is a valid array
+	if (!Array.isArray(products) || products.length === 0) {
+		return res.status(404).json({
+			message: 'Product array is invalid or empty',
+			error: true,
+			payload: null,
+		});
+	}
+
+	// Validate that each product has Idproduct and Quantity as numbers
+	if (
+		products.some(
+			(product) =>
+				typeof product.idProduct !== 'number' || typeof product.quantity !== 'number'
+		)
+	) {
+		return res.status(404).json({
+			message: "Each product must have 'idProduct' and 'quantity' as a numbers",
+			error: true,
+			payload: null,
+		});
+	}
+
+	// Generate a new ID based on the current number of carts
+	const newCartId = carts.length + 1;
+
+	// Create the new cart
+	const newCart = { id: newCartId, products };
+
+	// Add the cart to Array
+	carts.push(newCart);
+
+	// Save the updated array of products to the json file
+	writeData(fileCarts, carts);
+
+	return res.status(201).json({
+		message: 'cart created successfully and product added to cart',
+		error: false,
+		payload: newCart,
+	});
+});
+
+//****************************************************************/
 router.post('/product/:pid', (req, res) => {
 	const productId = parseInt(req.params.pid);
 
