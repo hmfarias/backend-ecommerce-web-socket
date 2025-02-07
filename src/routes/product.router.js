@@ -1,5 +1,13 @@
+/**
+ * This file contains the routes for the product API.
+ * It defines the routes for creating, retrieving, updating, and deleting products.
+ * The routes are defined using the Express.js router.
+ * The router is imported from the Express.js module.
+ * The file reads the products data from a JSON file.
+ */
+
 import express from 'express';
-import { readData, writeData } from '../helpers/dataHandler.js';
+import { readData, writeData } from '../helpers/dataHandlerFromJSON.js';
 
 const router = express.Router();
 
@@ -48,8 +56,8 @@ router.get('/', (req, res) => {
 });
 
 //****************************************************************/
-router.get('/:id', (req, res) => {
-	const productId = parseInt(req.params.id); // Convert number
+router.get('/:pid', (req, res) => {
+	const productId = parseInt(req.params.pid); // Convert number
 	const product = products.find((prod) => prod.id === productId); // Find the product
 
 	if (!product) {
@@ -130,6 +138,9 @@ router.post('/', (req, res) => {
 		});
 	}
 
+	// If Thumbnail is not received, it is left blank
+	const validThumbnail = thumbnail ? thumbnail : '';
+
 	// Validate that the thumbnail is a valid URL
 	if (thumbnail && !thumbnail.match(/^https?:\/\//)) {
 		return res.status(400).json({
@@ -149,10 +160,10 @@ router.post('/', (req, res) => {
 		description,
 		code,
 		price,
-		validStatus,
+		status: validStatus,
 		stock,
 		category,
-		thumbnail,
+		thumbnail: validThumbnail,
 	};
 
 	// Add the product to Array
