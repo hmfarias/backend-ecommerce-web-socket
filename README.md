@@ -7,22 +7,22 @@
 <!-- PROJECT LOGO -->
 <div align="center">
   <a href="https://github.com/hmfarias/backend-ecommerce">
-    <img src="https://github.com/hmfarias/notredame-next/blob/main/public/logo.png" alt="Logo" width="350" height="auto">
+    <img src="https://github.com/hmfarias/backend-ecommerce/blob/main/public/logo.png" alt="Logo" width="350" height="auto">
   </a>
-  <h2 align="center">Descubre lo que necesites en cada click</h2>
+  <h1 align="center">BACKEND</h1>
 
 
   <p align="center">
     Polirubro online
     <br />
-    <a href="" target="_blank" ><strong>Explora el sitio en Git Pages»</strong></a>
+    <a href="" target="_blank" ><strong>»</strong></a>
     <br />
     <br />
-    <a href="https://github.com/hmfarias/notredame-next">Ver repositorio</a>
+    <a href="https://github.com/hmfarias/backend-ecommerce">Ver repositorio</a>
     ·
-    <a href="https://github.com/hmfarias/notredame-next/issues">Reportar un error</a>
+    <a href="https://github.com/hmfarias/backend-ecommerce/issues">Reportar un error</a>
     ·
-    <a href="https://github.com/hmfarias/notredame-next/issues">Solicitar función</a>
+    <a href="https://github.com/hmfarias/backend-ecommerce/issues">Solicitar función</a>
   </p>
 </div>
 
