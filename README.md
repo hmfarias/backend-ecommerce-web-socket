@@ -150,6 +150,9 @@ Esto instalará la aplicación de manera local.
 
 Esto iniciará la aplicación en modo desarrrollador, y mostrará un mensaje en la terminal indicando que el servidor está corriendo en el puerto 8080.
 
+En la carpeta raiz encontrarás el archivo "postman_collection.json" el cual contiene la coleccion postman para probar todos los endpoints. Bastará con importar la coleccion desde Postman, para que se cree una coleccion que contendra dos subcarpetas: "Products" con las llamadas a los endpoints de productos y "Carts" con las llamadas a los endpoints de Carritos de compra.
+
+
 
 
 [Volver al menú](#top)
