@@ -35,8 +35,6 @@
 1. [Introducción](#introduccion)
 2. [Construido con](#consturido)
 3. [Algunas Consideraciones](#consideraciones)
-   * [Router](#router)
-   * [Local Storage](#localstorage)
    * [Comentarios en el código](#comentarios)
 5. [Esquema de la App](#esquema)
 6. [Instalación en local](#instalacion)
@@ -80,16 +78,8 @@ Gracias por visitar nuestro repositorio. ¡Esperamos que disfrutes explorando y 
 
 En el estado actual, los datos se manejan en archivo JSON y se accede a ellos mediante la clase FileManagerJson. Esta clase recibe en su constructor el path del archivo json con el que se desea trabajar y posee dos metodos: getData() y saveData(), para obtener y grabar los datos en el archivo Json respectivamente.
 
-<a name="router"></a>
 
-### ROUTER
-
-
-
-<a name="localstorage"></a>
-
-### LOCAL STORAGE
-
+[Volver al menú](#top)
 
 
 <a name="comentarios"></a>
