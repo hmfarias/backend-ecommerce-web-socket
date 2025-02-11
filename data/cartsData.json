@@ -30,7 +30,7 @@
       },
       {
         "idProduct": 40,
-        "quantity": 2
+        "quantity": 3
       }
     ]
   },
@@ -75,6 +75,32 @@
       {
         "idProduct": 100,
         "quantity": 2
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "products": [
+      {
+        "idProduct": 10,
+        "quantity": 7
+      },
+      {
+        "idProduct": 20,
+        "quantity": 1
+      },
+      {
+        "idProduct": 30,
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "products": [
+      {
+        "idProduct": 7,
+        "quantity": 1
       }
     ]
   }

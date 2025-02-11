@@ -7,12 +7,14 @@
  */
 
 import express from 'express';
-import { readData, writeData } from '../helpers/dataHandlerFromJSON.js';
+// import { readData, writeData } from '../helpers/dataHandlerFromJSON.js';
+import FileManagerJson from '../class/FileManagerJson.js';
 
 const router = express.Router();
 
-const file = './data/productsData.json';
-const products = await readData(file);
+const fileProducts = './data/productsData.json';
+// const products = await readData(file);
+const fileManagerProducts = new FileManagerJson(fileProducts);
 
 const categoryList = [
 	'beauty',
@@ -42,7 +44,10 @@ const categoryList = [
 ];
 
 //* GET ALL PRODUCTS **********************************************/
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+	// read data from file
+	const products = await fileManagerProducts.getData();
+
 	const limit = parseInt(req.query.limit) || products.length; // If the limit is not passed, everything is returned.
 
 	// Limit products according to the limit value
@@ -56,7 +61,10 @@ router.get('/', (req, res) => {
 });
 
 //* GET A PRODUCT BY ID *******************************************/
-router.get('/:pid', (req, res) => {
+router.get('/:pid', async (req, res) => {
+	// read data from file
+	const products = await fileManagerProducts.getData();
+
 	const productId = parseInt(req.params.pid); // Convert number
 	const product = products.find((prod) => prod.id === productId); // Find the product
 
@@ -76,7 +84,7 @@ router.get('/:pid', (req, res) => {
 });
 
 //* POST A NEW PRODUCT*********************************************/
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 	const { title, description, code, price, status, stock, category, thumbnail } =
 		req.body;
 
@@ -149,7 +157,8 @@ router.post('/', (req, res) => {
 			payload: null,
 		});
 	}
-
+	// read data from file
+	const products = await fileManagerProducts.getData();
 	//Generate correlative ID (the last ID + 1)
 	const newId = products.length + 1;
 
@@ -170,7 +179,8 @@ router.post('/', (req, res) => {
 	products.push(newProduct);
 
 	// Save the updated array of products to the json file
-	writeData(file, products);
+	// writeData(file, products);
+	fileManagerProducts.saveData(products);
 
 	return res.status(201).json({
 		message: 'product created successfully',
@@ -180,11 +190,13 @@ router.post('/', (req, res) => {
 });
 
 //* PUT A PRODUCT *************************************************/
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
 	const { id } = req.params;
 	const { title, description, code, price, status, stock, category, thumbnail } =
 		req.body;
 
+	// read data from file
+	const products = await fileManagerProducts.getData();
 	// Search the product by ID
 	const productIndex = products.findIndex((prod) => prod.id === parseInt(id));
 
@@ -279,7 +291,8 @@ router.put('/:id', (req, res) => {
 	products[productIndex] = updatedProduct;
 
 	// Save changes in the JSON file
-	writeData(file, products);
+	// writeData(file, products);
+	fileManagerProducts.saveData(products);
 
 	return res.json({
 		message: 'Product updated successfully',
@@ -289,9 +302,11 @@ router.put('/:id', (req, res) => {
 });
 
 //* DELETE A PRODUCT *********************************************/
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
 	const { id } = req.params;
 
+	// read data from file
+	const products = await fileManagerProducts.getData();
 	// Find the product with the specified ID
 	const productIndex = products.findIndex((product) => product.id === parseInt(id));
 
@@ -308,7 +323,8 @@ router.delete('/:id', (req, res) => {
 	products.splice(productIndex, 1);
 
 	// Save the array updated in the JSON file
-	writeData(file, products);
+	// writeData(file, products);
+	fileManagerProducts.saveData(products);
 
 	// Answer with the successful message
 	return res.status(200).json({

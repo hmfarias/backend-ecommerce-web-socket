@@ -8,19 +8,26 @@
 
 import express from 'express';
 import { readData, writeData } from '../helpers/dataHandlerFromJSON.js';
+import FileManagerJson from '../class/FileManagerJson.js';
 
 const router = express.Router();
 
 // retrieve products data from productsData.json file
 const fileProducts = './data/productsData.json';
-const products = await readData(fileProducts);
+// const products = await readData(fileProducts);
+const fileManagerProducts = new FileManagerJson(fileProducts);
 
 // retrieve carts data from cartsData.json file
 const fileCarts = './data/cartsData.json';
-const carts = await readData(fileCarts);
+// const carts = await readData(fileCarts);
+const fileManagerCarts = new FileManagerJson(fileCarts);
 
 //* GET ALL CARTS *************************************************/
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+	// read data from file
+	const products = await fileManagerProducts.getData();
+	const carts = await fileManagerCarts.getData();
+
 	const completeCarts = carts.map((cart) => ({
 		...cart,
 		products: cart.products.map((prod) => {
@@ -39,8 +46,13 @@ router.get('/', (req, res) => {
 export default router;
 
 //* GET A CART BY ID **********************************************/
-router.get('/:cid', (req, res) => {
+router.get('/:cid', async (req, res) => {
 	const cartId = parseInt(req.params.cid); // Convert number
+
+	// read data from file
+	const products = await fileManagerProducts.getData();
+	const carts = await fileManagerCarts.getData();
+
 	const cart = carts.find((cart) => cart.id === cartId); // Find the product
 
 	if (!cart) {
@@ -64,7 +76,7 @@ router.get('/:cid', (req, res) => {
 });
 
 //* POST A CART WITH ONE OR SEVERAL PRODUCTS **********************/
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 	const { products } = req.body;
 
 	// Validate that product is a valid array
@@ -90,6 +102,9 @@ router.post('/', (req, res) => {
 		});
 	}
 
+	// read data from file
+	const carts = await fileManagerCarts.getData();
+
 	// Generate a new ID based on the current number of carts
 	const newCartId = carts.length + 1;
 
@@ -100,7 +115,8 @@ router.post('/', (req, res) => {
 	carts.push(newCart);
 
 	// Save the updated array of products to the json file
-	writeData(fileCarts, carts);
+	// writeData(fileCarts, carts);
+	fileManagerCarts.saveData(carts);
 
 	return res.status(201).json({
 		message: 'cart created successfully and product added to cart',
@@ -110,8 +126,11 @@ router.post('/', (req, res) => {
 });
 
 //* POST A NEW CART WITH JUST ONE PRODUCT *************************/
-router.post('/product/:pid', (req, res) => {
+router.post('/product/:pid', async (req, res) => {
 	const productId = parseInt(req.params.pid);
+
+	// read data from file
+	const products = await fileManagerProducts.getData();
 
 	// Find the product
 	const product = products.find((prod) => prod.id === productId);
@@ -123,6 +142,9 @@ router.post('/product/:pid', (req, res) => {
 			payload: null,
 		});
 	}
+
+	// read data from file
+	const carts = await fileManagerCarts.getData();
 
 	const newCart = {
 		id: carts.length + 1,
@@ -133,7 +155,8 @@ router.post('/product/:pid', (req, res) => {
 	carts.push(newCart);
 
 	// Save the updated array of products to the json file
-	writeData(fileCarts, carts);
+	// writeData(fileCarts, carts);
+	fileManagerCarts.saveData(carts);
 
 	return res.status(201).json({
 		message: 'cart created successfully and product added to cart',
@@ -143,9 +166,12 @@ router.post('/product/:pid', (req, res) => {
 });
 
 //* POST A NEW PRODUCT IN AN EXISTING CART ************************/
-router.post('/:cid/product/:pid', (req, res) => {
+router.post('/:cid/product/:pid', async (req, res) => {
 	const cartId = parseInt(req.params.cid);
 	const productId = parseInt(req.params.pid);
+
+	// read data from file
+	const products = await fileManagerProducts.getData();
 
 	// Find the product
 	const product = products.find((prod) => prod.id === productId);
@@ -157,6 +183,9 @@ router.post('/:cid/product/:pid', (req, res) => {
 			payload: null,
 		});
 	}
+	// read data from file
+	const carts = await fileManagerCarts.getData();
+
 	// Find the cart
 	let cart = carts.find((c) => c.id === cartId);
 
@@ -171,7 +200,8 @@ router.post('/:cid/product/:pid', (req, res) => {
 		carts.push(newCart);
 
 		// Save the updated array of products to the json file
-		writeData(fileCarts, carts);
+		// writeData(fileCarts, carts);
+		fileManagerCarts.saveData(carts);
 
 		return res.status(201).json({
 			message: 'cart created successfully and product added to cart',
@@ -193,7 +223,8 @@ router.post('/:cid/product/:pid', (req, res) => {
 	}
 
 	// Save the updated array of products to the json file
-	writeData(fileCarts, carts);
+	// writeData(fileCarts, carts);
+	fileManagerCarts.saveData(carts);
 
 	return res.status(201).json({
 		message: 'product successfully added to cart ',
