@@ -78,6 +78,8 @@ Gracias por visitar nuestro repositorio. ¡Esperamos que disfrutes explorando y 
 
 ## ALGUNAS CONSIDERACIONES
 
+En el estado actual, los datos se manejan en archivo JSON y se accede a ellos mediante la clase FileManagerJson. Esta clase recibe en su constructor el path del archivo json con el que se desea trabajar y posee dos metodos: getData() y saveData(), para obtener y grabar los datos en el archivo Json respectivamente.
+
 <a name="router"></a>
 
 ### ROUTER
