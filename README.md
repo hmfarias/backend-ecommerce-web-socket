@@ -11,7 +11,6 @@
   </a>
   <h1 align="center">BACKEND</h1>
 
-
   <p align="center">
     Polirubro online
     <br />
@@ -34,13 +33,14 @@
 
 1. [Introducción](#introduccion)
 2. [Construido con](#consturido)
-3. [Algunas Consideraciones](#consideraciones)
-   * [Comentarios en el código](#comentarios)
-5. [Esquema de la App](#esquema)
-6. [Instalación en local](#instalacion)
-7. [Contribuyendo](#contribuyendo)
-8. [Licencia](#licencia)
-9. [Contacto](#contacto)
+3. [Consideraciones Importantes](#consideraciones)
+   - [WEBSOCKET - DESAFÍO ENTREGABLE - PROCESO DE TESTING](#websocket)
+   - [Comentarios en el código](#comentarios)
+4. [Esquema de la App](#esquema)
+5. [Instalación en local](#instalacion)
+6. [Contribuyendo](#contribuyendo)
+7. [Licencia](#licencia)
+8. [Contacto](#contacto)
 
 <hr>
 
@@ -64,9 +64,15 @@ Gracias por visitar nuestro repositorio. ¡Esperamos que disfrutes explorando y 
 
 ### CONSTRUIDO CON
 
-![Static Badge](https://img.shields.io/badge/ExpressJS-orange?style=for-the-badge) como framework de código abierto para crear aplicaciones web y APIs. Está escrito en JavaScript y se ejecuta en el entorno de Node.js
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) como framework de código abierto para crear aplicaciones web y APIs. Está escrito en JavaScript y se ejecuta en el entorno de Node.js
 
-<img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> como lenguaje de programación interpretado, de alto nivel y dinámico. Se ejecuta en el navegador del cliente, lo que permite la creación de páginas web interactivas y dinámicas.
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) como lenguaje de programación interpretado, de alto nivel y dinámico. Se ejecuta en el navegador del cliente, lo que permite la creación de páginas web interactivas y dinámicas.
+
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) (HyperText Markup Language) como lenguaje de marcación de hipertéxto estándar utilizado para crear y diseñar páginas web.
+
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) (Cascading Style Sheets, Level 3) como lenguaje de diseño gráfico utilizado para controlar el aspecto visual de las páginas web, separando el contenido (HTML) de la presentación visual (CSS).
+
+![Static Badge](https://img.shields.io/badge/Sweer%20Alert-green?style=for-the-badge) como biblioteca de JavaScript que facilita la creación de alertas y diálogos personalizados y estéticamente agradables en la aplicacion web.
 
 [Volver al menú](#top)
 
@@ -74,13 +80,54 @@ Gracias por visitar nuestro repositorio. ¡Esperamos que disfrutes explorando y 
 
 <a name="consideraciones"></a>
 
-## ALGUNAS CONSIDERACIONES
+## CONSIDERACIONES IMPORTATES
 
 En el estado actual, los datos se manejan en archivo JSON y se accede a ellos mediante la clase FileManagerJson. Esta clase recibe en su constructor el path del archivo json con el que se desea trabajar y posee dos metodos: getData() y saveData(), para obtener y grabar los datos en el archivo Json respectivamente.
 
+[Volver al menú](#top)
+
+<a name="websocket"></a>
+
+### WEBSOCKET - DESAFÍO ENTREGABLE - PROCESO DE TESTING
+
+Se ha configurado el servidor para integrar el motor de plantillas Handlebars e instalar un servidor de socket.io al mismo.
+
+Se ha creado una vista “home.handlebars” la cual contiene la lista de todos los productos agregados hasta el momento.
+
+Además, se ha creado la vista “realTimeProducts.handlebars”, a la cual se accede en el endpoint “/realtimeproducts”. Esta vista contiene la misma lista de productos, pero trabaja con websockets.
+Cada vez que se agrega o elimina un producto usando los endpoints creados para tal efecto, la lista se actualiza automáticamente.
+
+La conexión de socket emits con HTTP se realiza dentro de la petición POST.
+
+### Paso 1: Instalación y ejecución del servidor
+
+(ver [Instalación en local](#instalacion))
+
+### Paso 2: Ruta raíz
+
+1. Abra la ruta raíz del servidor en su navegador. (http://localhost:8080)
+2. Deberá visualizarse el contenido de la vista `home.handlebars`.
+3. En este punto, podrá apreciar el listado de todos los productos cargados hasta el momento **web socket no se encuentra activo aqui**.
+
+### Paso 3: Acceso a la ruta `/realtimeproducts`. (http://localhost:8080/realtimeproducts)
+
+1. En la barra de direcciones del navegador, acceda a la ruta `/realtimeproducts`.
+2. Corrobore que el servidor haya conectado correctamente con el cliente:
+   - En la consola del servidor, deberá mostrarse un mensaje que diga: **"New client connected"**.
+
+### Paso 4: Visualización de la lista de productos
+
+1. En la vista `/realtimeproducts`, podrá apreciar la lista de productos similar a la anterior, pero aquí se encuentra activo web socket.
+2. En el direcotrio raiz del proyecto, podrá encontrar el archivo "Ecommerce Backend.postman_collection.json", el cual provee la coleccion Postman necesaria para probar todos los endpoints de la aplicacion y en especial el POST Y DELETE DE PRODUCTOS, que son los que activan el io.emit para cada caso.
+3. Abra Postman e importe la colección. Ejecute el request "Get All Product" para comprobar que el servidor se encuentre funcionando bien. Debería devoverle los 7 productos cargados hasta el momento.
+4. Abra el request "Post a new product" (ya se encuentra creado el objeto necesario para dar de alta un nuevo producto". Ejecute el request. Esto activa el "io.emit" correspondiente.
+5. Podra verificar en el navegador, la incorporación del producto en la lista de productos.
+6. Abra el request "Delete a product" (ya se encutra precargado el id 7 en la ruta aunque puede cambiarlo a cualquier id). Ejecute el request. Esto activa el "io.emit" correspondiente.
+7. Podra verificar en el navegador, la eliminación del producto en la lista de productos.
 
 [Volver al menú](#top)
 
+<hr>
 
 <a name="comentarios"></a>
 
@@ -89,7 +136,6 @@ En el estado actual, los datos se manejan en archivo JSON y se accede a ellos me
 Tratándose de una aplicación de índole DIDACTICO, se han dejado en el código comentarios útiles para su estudio. Pero se destaca que en un proyecto real, los mismos deben ser utilizados lo menos posible.
 
 [Volver al menú](#top)
-
 
 <hr>
 
@@ -118,9 +164,8 @@ Debes contar con un editor de código como Visual Estudio Code o similar.
 
 2- Clona el repositorio escribiendo en la terminal o consola de tu pc el siguiente código:
 <code>
-  git clone https://github.com/hmfarias/backend-ecommerce.git
+git clone https://github.com/hmfarias/backend-ecommerce.git
 </code>
-
 
 Esto creará la carpeta "backend-ecommerce" y en su interior los archivos de aplicación.
 
@@ -130,22 +175,19 @@ Esto creará la carpeta "backend-ecommerce" y en su interior los archivos de apl
 
 5- Ejecuta:
 <code>
-  npm install 
+npm install
 </code>
 
 Esto instalará la aplicación de manera local.
 
 6- Ejecuta:
 <code>
-  npm run dev 
+npm run dev
 </code>
 
 Esto iniciará la aplicación en modo desarrrollador, y mostrará un mensaje en la terminal indicando que el servidor está corriendo en el puerto 8080.
 
 En la carpeta raiz encontrarás el archivo "postman_collection.json" el cual contiene la coleccion postman para probar todos los endpoints. Bastará con importar la coleccion desde Postman, para que se cree una coleccion que contendra dos subcarpetas: "Products" con las llamadas a los endpoints de productos y "Carts" con las llamadas a los endpoints de Carritos de compra.
-
-
-
 
 [Volver al menú](#top)
 

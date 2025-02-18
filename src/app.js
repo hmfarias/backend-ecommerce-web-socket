@@ -29,7 +29,7 @@ app.set('view engine', 'handlebars');
 //define the 'public' folder where static files are
 app.use(express.static(`${__dirname}/public`));
 
-//Middleware to make 'io' available in all routes
+//Middleware to make 'io' available in all routes - IT MUST BE BEFORE THE ROUTES IMPLEMENTATION
 app.use((req, res, next) => {
 	req.io = io; // inject IO in each request
 	next();
