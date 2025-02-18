@@ -180,7 +180,8 @@ router.post('/', async (req, res) => {
 
 	// Save the updated array of products to the json file
 	// writeData(file, products);
-	fileManagerProducts.saveData(products);
+	await fileManagerProducts.saveData(products);
+	req.io.emit('newProduct', newProduct); // acces the io instance and emit
 
 	return res.status(201).json({
 		message: 'product created successfully',
@@ -325,6 +326,8 @@ router.delete('/:id', async (req, res) => {
 	// Save the array updated in the JSON file
 	// writeData(file, products);
 	fileManagerProducts.saveData(products);
+
+	req.io.emit('deletedProduct', id);
 
 	// Answer with the successful message
 	return res.status(200).json({
