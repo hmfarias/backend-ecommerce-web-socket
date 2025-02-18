@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const productList = document.getElementById('productList'); // Referencia al contenedor donde se mostrarán los productos
 
 	try {
-		const response = await fetch('/api/products?limit=5'); // Llamada a la API para obtener los productos
+		const response = await fetch('/api/products'); // Llamada a la API para obtener los productos
 		const data = await response.json(); // Transformar la respuesta en JSON
 
 		if (!data.error) {
