@@ -105,28 +105,26 @@ La conexión de socket emits con HTTP se realiza dentro de la petición POST.
 
 ### PROBANDO EL DEPLOY EN GLITCH
 
-### Paso 1: Instalación y ejecución del servidor
-
-### Paso 2: Ruta raíz
+### Paso 1: Ruta raíz
 
 1. Abra la ruta raíz del servidor en su navegador. (https://western-furtive-cream.glitch.me/)
 2. Deberá visualizarse el contenido de la vista `home.handlebars`.
 3. En este punto, podrá apreciar el listado de todos los productos cargados hasta el momento **web socket no se encuentra activo aqui**.
 
-### Paso 3: Acceso a la ruta `/realtimeproducts`. (https://western-furtive-cream.glitch.me/realtimeproducts)
+### Paso 2: Acceso a la ruta `/realtimeproducts`. (https://western-furtive-cream.glitch.me/realtimeproducts)
 
 1. En la barra de direcciones del navegador, acceda a la ruta `/realtimeproducts`.
 2. Corrobore que el servidor haya conectado correctamente con el cliente:
    - En la consola del servidor, deberá mostrarse un mensaje que diga: **"New client connected"**.
 
-### Paso 4: Visualización de la lista de productos
+### Paso 3: Visualización de la lista de productos
 
 1. En la vista `/realtimeproducts`, podrá apreciar la lista de productos similar a la anterior, pero aquí se encuentra activo web socket.
 2. En el direcotrio raiz del proyecto, podrá encontrar el archivo "Ecommerce Backend IN DEPLOY.postman_collection.json", el cual provee la coleccion Postman necesaria para probar todos los endpoints de la aplicacion y en especial el POST Y DELETE DE PRODUCTOS, que son los que activan el io.emit para cada caso.
-3. Abra Postman e importe la colección. Ejecute el request "Get All Product" para comprobar que el servidor se encuentre funcionando bien. Debería devoverle los 7 productos cargados hasta el momento.
-4. Abra el request "Post a new product" (ya se encuentra creado el objeto necesario para dar de alta un nuevo producto". Ejecute el request. Esto activa el "io.emit" correspondiente.
+3. Abra Postman e importe la colección. Ejecute el request "Get All Product in DEPLOY" para comprobar que el servidor se encuentre funcionando bien. Debería devoverle los 7 productos cargados hasta el momento.
+4. Abra el request "Post a new product in DEPLOY" (ya se encuentra creado el objeto necesario para dar de alta un nuevo producto". Ejecute el request. Esto activa el "io.emit" correspondiente.
 5. Podra verificar en el navegador, la incorporación del producto en la lista de productos.
-6. Abra el request "Delete a product" (ya se encutra precargado el id 7 en la ruta aunque puede cambiarlo a cualquier id). Ejecute el request. Esto activa el "io.emit" correspondiente.
+6. Abra el request "Delete a product in DEPLOY" (ya se encutra precargado el id 7 en la ruta aunque puede cambiarlo a cualquier id). Ejecute el request. Esto activa el "io.emit" correspondiente.
 7. Podra verificar en el navegador, la eliminación del producto en la lista de productos.
 
 [Volver al menú](#top)
