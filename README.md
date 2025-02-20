@@ -99,7 +99,9 @@ Se ha creado una vista “home.handlebars” la cual contiene la lista de todos 
 Además, se ha creado la vista “realTimeProducts.handlebars”, a la cual se accede en el endpoint “/realtimeproducts”. Esta vista contiene la misma lista de productos, pero trabaja con websockets.
 Cada vez que se agrega o elimina un producto usando los endpoints creados para tal efecto, la lista se actualiza automáticamente.
 
-La conexión de socket emits con HTTP se realiza dentro de la petición POST.
+Tambien se ha creado una vista “addProducts.handlebars”, a la cual se accede en el endpoint “/addproducts”. Esta vista contiene un formulario para agregar nuevos productos, el cual se envia a la ruta “/api/products” para ser almacenado en la base de datos (archivo JSON) y actualizada en tiempo real.
+
+La conexión de socket emits con HTTP se realiza dentro de la petición POST y DELETE.
 
 <a name="glitch"></a>
 
@@ -109,23 +111,28 @@ La conexión de socket emits con HTTP se realiza dentro de la petición POST.
 
 1. Abra la ruta raíz del servidor en su navegador. (https://western-furtive-cream.glitch.me/)
 2. Deberá visualizarse el contenido de la vista `home.handlebars`.
-3. En este punto, podrá apreciar el listado de todos los productos cargados hasta el momento **web socket no se encuentra activo aqui**.
+3. En este punto, podrá apreciar el listado de todos los productos cargados hasta el momento **web socket no se encuentra activo aqui**. Al hacer clic en el botón "View Real-Time Products", se accede a la vista "realTimeProducts.handlebars" donde se visualizan los productos en tiempo real.
 
 ### Paso 2: Acceso a la ruta `/realtimeproducts`. (https://western-furtive-cream.glitch.me/realtimeproducts)
 
-1. En la barra de direcciones del navegador, acceda a la ruta `/realtimeproducts`.
+1. Haga click en el boton "View Real-Time Products" para acceder a la vista "realTimeProducts.handlebars", o bien acceda a la ruta `/realtimeproducts` en la barra de direcciones del navegador.
+
 2. Corrobore que el servidor haya conectado correctamente con el cliente:
    - En la consola del servidor, deberá mostrarse un mensaje que diga: **"New client connected"**.
 
 ### Paso 3: Visualización de la lista de productos
 
 1. En la vista `/realtimeproducts`, podrá apreciar la lista de productos similar a la anterior, pero aquí se encuentra activo web socket.
-2. En el direcotrio raiz del proyecto, podrá encontrar el archivo "Ecommerce Backend IN DEPLOY.postman_collection.json", el cual provee la coleccion Postman necesaria para probar todos los endpoints de la aplicacion y en especial el POST Y DELETE DE PRODUCTOS, que son los que activan el io.emit para cada caso.
-3. Abra Postman e importe la colección. Ejecute el request "Get All Product in DEPLOY" para comprobar que el servidor se encuentre funcionando bien. Debería devoverle los 7 productos cargados hasta el momento.
-4. Abra el request "Post a new product in DEPLOY" (ya se encuentra creado el objeto necesario para dar de alta un nuevo producto". Ejecute el request. Esto activa el "io.emit" correspondiente.
-5. Podra verificar en el navegador, la incorporación del producto en la lista de productos.
-6. Abra el request "Delete a product in DEPLOY" (ya se encutra precargado el id 7 en la ruta aunque puede cambiarlo a cualquier id). Ejecute el request. Esto activa el "io.emit" correspondiente.
-7. Podra verificar en el navegador, la eliminación del producto en la lista de productos.
+2. Haga click en el boton "Add more products" para acceder a la vista "addProducts.handlebars", o bien acceda a la ruta `/addproducts` en la barra de direcciones del navegador. Desde aquí se puede agregar nuevos productos. Al hacer clic en el botón "Add Product", se envia el formulario a la ruta `/api/products` donde se almacena en la base de datos (archivo JSON) y actualizada en tiempo real. Es conveniente tener abiertos dos navegadores, uno para ver la lista de productos en tiempo real y otro para agregar productos.
+3. A la derecha de cada producto, se encuentra un botón "Delete" que se puede utilizar para eliminar el producto seleccionado. Al hacer clic en el botón, se envia una solicitud DELETE a la ruta `/api/products/:id` donde se elimina el producto de la base de datos (archivo JSON) y actualizada en tiempo real.
+
+OTRA ALTERNATIVA: En el direcotrio raiz del proyecto, podrá encontrar el archivo "Ecommerce Backend.postman_collection.json", el cual provee la coleccion Postman necesaria para probar todos los endpoints de la aplicacion y en especial el POST Y DELETE DE PRODUCTOS, que son los que activan el io.emit para cada caso.
+
+1. Abra Postman e importe la colección. Ejecute el request "Get All Product in DEPLOY" para comprobar que el servidor se encuentre funcionando bien. Debería devoverle los 7 productos cargados hasta el momento.
+2. Abra el request "Post a new product in DEPLOY" (ya se encuentra creado el objeto necesario para dar de alta un nuevo producto". Ejecute el request. Esto activa el "io.emit" correspondiente.
+3. Podra verificar en el navegador, la incorporación del producto en la lista de productos.
+4. Abra el request "Delete a product in DEPLOY" (ya se encutra precargado el id 7 en la ruta aunque puede cambiarlo a cualquier id). Ejecute el request. Esto activa el "io.emit" correspondiente.
+5. Podra verificar en el navegador, la eliminación del producto en la lista de productos.
 
 [Volver al menú](#top)
 
@@ -143,23 +150,28 @@ La conexión de socket emits con HTTP se realiza dentro de la petición POST.
 
 1. Abra la ruta raíz del servidor en su navegador. (http://localhost:8080)
 2. Deberá visualizarse el contenido de la vista `home.handlebars`.
-3. En este punto, podrá apreciar el listado de todos los productos cargados hasta el momento **web socket no se encuentra activo aqui**.
+3. En este punto, podrá apreciar el listado de todos los productos cargados hasta el momento **web socket no se encuentra activo aqui**. Al hacer clic en el botón "View Real-Time Products", se accede a la vista "realTimeProducts.handlebars" donde se visualizan los productos en tiempo real.
 
 ### Paso 3: Acceso a la ruta `/realtimeproducts`. (http://localhost:8080/realtimeproducts)
 
-1. En la barra de direcciones del navegador, acceda a la ruta `/realtimeproducts`.
+1. Haga click en el boton "View Real-Time Products" para acceder a la vista "realTimeProducts.handlebars", o bien acceda a la ruta `/realtimeproducts` en la barra de direcciones del navegador.
+
 2. Corrobore que el servidor haya conectado correctamente con el cliente:
    - En la consola del servidor, deberá mostrarse un mensaje que diga: **"New client connected"**.
 
-### Paso 4: Visualización de la lista de productos
+### Paso 3: Visualización de la lista de productos
 
 1. En la vista `/realtimeproducts`, podrá apreciar la lista de productos similar a la anterior, pero aquí se encuentra activo web socket.
-2. En el direcotrio raiz del proyecto, podrá encontrar el archivo "Ecommerce Backend.postman_collection.json", el cual provee la coleccion Postman necesaria para probar todos los endpoints de la aplicacion y en especial el POST Y DELETE DE PRODUCTOS, que son los que activan el io.emit para cada caso.
-3. Abra Postman e importe la colección. Ejecute el request "Get All Product" para comprobar que el servidor se encuentre funcionando bien. Debería devoverle los 7 productos cargados hasta el momento.
-4. Abra el request "Post a new product" (ya se encuentra creado el objeto necesario para dar de alta un nuevo producto". Ejecute el request. Esto activa el "io.emit" correspondiente.
-5. Podra verificar en el navegador, la incorporación del producto en la lista de productos.
-6. Abra el request "Delete a product" (ya se encutra precargado el id 7 en la ruta aunque puede cambiarlo a cualquier id). Ejecute el request. Esto activa el "io.emit" correspondiente.
-7. Podra verificar en el navegador, la eliminación del producto en la lista de productos.
+2. Haga click en el boton "Add more products" para acceder a la vista "addProducts.handlebars", o bien acceda a la ruta `/addproducts` en la barra de direcciones del navegador. Desde aquí se puede agregar nuevos productos. Al hacer clic en el botón "Add Product", se envia el formulario a la ruta `/api/products` donde se almacena en la base de datos (archivo JSON) y actualizada en tiempo real. Es conveniente tener abiertos dos navegadores, uno para ver la lista de productos en tiempo real y otro para agregar productos.
+3. A la derecha de cada producto, se encuentra un botón "Delete" que se puede utilizar para eliminar el producto seleccionado. Al hacer clic en el botón, se envia una solicitud DELETE a la ruta `/api/products/:id` donde se elimina el producto de la base de datos (archivo JSON) y actualizada en tiempo real.
+
+OTRA ALTERNATIVA: En el direcotrio raiz del proyecto, podrá encontrar el archivo "Ecommerce Backend.postman_collection.json", el cual provee la coleccion Postman necesaria para probar todos los endpoints de la aplicacion y en especial el POST Y DELETE DE PRODUCTOS, que son los que activan el io.emit para cada caso.
+
+1. Abra Postman e importe la colección. Ejecute el request "Get All Product in DEPLOY" para comprobar que el servidor se encuentre funcionando bien. Debería devoverle los 7 productos cargados hasta el momento.
+2. Abra el request "Post a new product in DEPLOY" (ya se encuentra creado el objeto necesario para dar de alta un nuevo producto". Ejecute el request. Esto activa el "io.emit" correspondiente.
+3. Podra verificar en el navegador, la incorporación del producto en la lista de productos.
+4. Abra el request "Delete a product in DEPLOY" (ya se encutra precargado el id 7 en la ruta aunque puede cambiarlo a cualquier id). Ejecute el request. Esto activa el "io.emit" correspondiente.
+5. Podra verificar en el navegador, la eliminación del producto en la lista de productos.
 
 [Volver al menú](#top)
 
