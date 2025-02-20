@@ -10,6 +10,12 @@
 	<section class='product-list' id='productList'>
 		<!-- The products will be dynamically injected here by WebSocket -->
 	</section>
+	<!-- Button to static Products -->
+	<div class='button-container'>
+		<a href='/' class='btn'>Back to the static Products list</a>
+		<a href='/addproducts' class='btn'> Add more products</a>
+	</div>
+
 </div>
 {{! The Socket.io script is added that allows us ti connect to the server via websockets }}
 <script src='/socket.io/socket.io.js'></script>

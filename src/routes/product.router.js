@@ -85,8 +85,16 @@ router.get('/:pid', async (req, res) => {
 
 //* POST A NEW PRODUCT*********************************************/
 router.post('/', async (req, res) => {
-	const { title, description, code, price, status, stock, category, thumbnail } =
-		req.body;
+	const {
+		title,
+		description,
+		code = 'RCH45Q1A',
+		price,
+		status = true,
+		stock,
+		category,
+		thumbnail = 'https://prd.place/400?pading=80',
+	} = req.body;
 
 	// Validate that the title is not empty
 	if (!title) {

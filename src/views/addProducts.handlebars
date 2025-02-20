@@ -1,0 +1,45 @@
+<div class='container'>
+	<header class='header'>
+		<h1 class='title'>Add a New Product</h1>
+		<p class='subtitle'>Fill in the details below to add a new product.</p>
+	</header>
+
+	<!-- Product Form -->
+	<form id='productForm' class='product-form'>
+		<label for='title'>Title:</label>
+		<input type='text' id='title' name='title' required />
+
+		<label for='description'>Description:</label>
+		<textarea id='description' name='description' required></textarea>
+
+		<!-- Flex container for Category, Price, and Stock -->
+		<div class='form-group'>
+			<div class='form-item'>
+				<label for='category'>Category:</label>
+				<select id='category' name='category' required></select>
+			</div>
+
+			<div class='form-item'>
+				<label for='price'>Price:</label>
+				<input type='number' id='price' name='price' required />
+			</div>
+
+			<div class='form-item'>
+				<label for='stock'>Stock:</label>
+				<input type='number' id='stock' name='stock' required />
+			</div>
+		</div>
+
+		<button type='submit' class='btn'>Add Product</button>
+	</form>
+</div>
+<!-- Button to Real-Time Products -->
+<div class='button-container'>
+	<a href='/realtimeproducts' class='btn'>View Real-Time Products</a>
+</div>
+
+{{! CDN for the sweetalert2 }}
+<script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+
+{{! The script that will be executed on the server side }}
+<script src='/js/addProduct.js'></script>

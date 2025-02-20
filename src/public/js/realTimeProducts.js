@@ -25,9 +25,45 @@ document.addEventListener('DOMContentLoaded', async () => {
 				const productInfo = document.createElement('span');
 				productInfo.textContent = `${product.id} - ${product.title}`;
 
+				// Create the delete button
+				const deleteButton = document.createElement('button');
+				deleteButton.textContent = 'Delete';
+				deleteButton.classList.add('delete-button');
+
+				// Add the event listener for the delete button
+				deleteButton.addEventListener('click', async () => {
+					try {
+						// Make a DELETE request to the server to delete the product
+						const response = await fetch(`/api/products/${product.id}`, {
+							method: 'DELETE',
+						});
+						const data = await response.json();
+						if (!data.error) {
+							Swal.fire({
+								title: 'Success',
+								text: 'Product deleted successfully',
+								icon: 'success',
+								confirmButtonText: 'Ok',
+							});
+							// Remove the product from the list
+							removeProductFromList(product.id);
+						} else {
+							Swal.fire({
+								title: 'Error',
+								text: data.message,
+								icon: 'error',
+								confirmButtonText: 'Ok',
+							});
+						}
+					} catch (error) {
+						console.error('Error deleting product:', error);
+					}
+				});
+
 				// Add the miniature and product information to the product container
 				li.appendChild(thumbnail);
 				li.appendChild(productInfo);
+				li.appendChild(deleteButton);
 
 				// Add the product container to the list
 				productList.appendChild(li);
@@ -65,9 +101,45 @@ const addProductToList = (product) => {
 	const productInfo = document.createElement('span');
 	productInfo.textContent = `${product.id} - ${product.title}`;
 
+	// Create the delete button
+	const deleteButton = document.createElement('button');
+	deleteButton.textContent = 'Delete';
+	deleteButton.classList.add('delete-button');
+
+	// Add the event listener for the delete button
+	deleteButton.addEventListener('click', async () => {
+		try {
+			// Make a DELETE request to the server to delete the product
+			const response = await fetch(`/api/products/${product.id}`, {
+				method: 'DELETE',
+			});
+			const data = await response.json();
+			if (!data.error) {
+				Swal.fire({
+					title: 'Success',
+					text: 'Product deleted successfully',
+					icon: 'success',
+					confirmButtonText: 'Ok',
+				});
+				// Remove the product from the list
+				removeProductFromList(product.id);
+			} else {
+				Swal.fire({
+					title: 'Error',
+					text: data.message,
+					icon: 'error',
+					confirmButtonText: 'Ok',
+				});
+			}
+		} catch (error) {
+			console.error('Error deleting product:', error);
+		}
+	});
+
 	// Add the miniature and product information to the product container
 	li.appendChild(thumbnail);
 	li.appendChild(productInfo);
+	li.appendChild(deleteButton);
 
 	// // Add the new product at the beginning of the list
 	// productList.insertBefore(li, productList.firstChild);
@@ -96,5 +168,5 @@ socket.on('newProduct', (product) => {
 
 // LISTEN for the 'deletedProduct' event to update the product list
 socket.on('deletedProduct', (product) => {
-	removeProductFromList(product); // Eliminar el producto de la lista
+	removeProductFromList(product); // Delete the product from the list
 });

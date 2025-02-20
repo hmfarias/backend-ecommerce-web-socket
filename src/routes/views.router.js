@@ -10,4 +10,8 @@ router.get('/realtimeproducts', (req, res) => {
 	res.render('realTimeProducts', { title: 'The products in real time' });
 });
 
+router.get('/addproducts', (req, res) => {
+	res.render('addProducts', { title: 'Add new products' });
+});
+
 export default router;
