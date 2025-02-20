@@ -120,7 +120,7 @@ La conexión de socket emits con HTTP se realiza dentro de la petición POST y D
 2. Corrobore que el servidor haya conectado correctamente con el cliente:
    - En la consola del servidor, deberá mostrarse un mensaje que diga: **"New client connected"**.
 
-### Paso 3: Visualización de la lista de productos
+### Paso 3: Visualización de la lista de productos (ABRA DOS NAVEGADORES PARA PODER VER LA LISTA DE PRODUCTOS EN TIEMPO REAL)
 
 1. En la vista `/realtimeproducts`, podrá apreciar la lista de productos similar a la anterior, pero aquí se encuentra activo web socket.
 2. Haga click en el boton "Add more products" para acceder a la vista "addProducts.handlebars", o bien acceda a la ruta `/addproducts` en la barra de direcciones del navegador. Desde aquí se puede agregar nuevos productos. Al hacer clic en el botón "Add Product", se envia el formulario a la ruta `/api/products` donde se almacena en la base de datos (archivo JSON) y actualizada en tiempo real. Es conveniente tener abiertos dos navegadores, uno para ver la lista de productos en tiempo real y otro para agregar productos.
@@ -159,7 +159,7 @@ OTRA ALTERNATIVA: En el direcotrio raiz del proyecto, podrá encontrar el archiv
 2. Corrobore que el servidor haya conectado correctamente con el cliente:
    - En la consola del servidor, deberá mostrarse un mensaje que diga: **"New client connected"**.
 
-### Paso 3: Visualización de la lista de productos
+### Paso 3: Visualización de la lista de productos (ABRA DOS NAVEGADORES PARA PODER VER LA LISTA DE PRODUCTOS EN TIEMPO REAL)
 
 1. En la vista `/realtimeproducts`, podrá apreciar la lista de productos similar a la anterior, pero aquí se encuentra activo web socket.
 2. Haga click en el boton "Add more products" para acceder a la vista "addProducts.handlebars", o bien acceda a la ruta `/addproducts` en la barra de direcciones del navegador. Desde aquí se puede agregar nuevos productos. Al hacer clic en el botón "Add Product", se envia el formulario a la ruta `/api/products` donde se almacena en la base de datos (archivo JSON) y actualizada en tiempo real. Es conveniente tener abiertos dos navegadores, uno para ver la lista de productos en tiempo real y otro para agregar productos.
