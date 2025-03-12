@@ -93,7 +93,7 @@ router.post('/', async (req, res) => {
 		status = true,
 		stock,
 		category,
-		thumbnail = 'https://prd.place/400?pading=80',
+		thumbnail = 'https://prd.place/400?id=14',
 	} = req.body;
 
 	// Validate that the title is not empty
