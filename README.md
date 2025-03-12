@@ -7,7 +7,7 @@
 <!-- PROJECT LOGO -->
 <div align="center">
   <a href="https://github.com/hmfarias/backend-ecommerce">
-    <img src="https://github.com/hmfarias/backend-ecommerce/blob/main/public/logo.png" alt="Logo" width="350" height="auto">
+    <img src="https://github.com/hmfarias/backend-ecommerce/blob/main/src/public/logo.png" alt="Logo" width="350" height="auto">
   </a>
   <h1 align="center">BACKEND</h1>
 
